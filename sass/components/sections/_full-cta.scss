@@ -1,0 +1,94 @@
+/* CSS Document */
+
+.FullCTA{
+	margin: 140px auto;
+	
+	
+	
+	&Content{
+	    display: flex;
+		background-color: #19C79D;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 13px;
+		height: 265px;
+		border: 1px solid #000000;	
+		
+		@media(max-width: $tablemin){
+	    flex-direction: column;
+		height: auto;
+		padding: 0 25px;
+		padding-top: 64px;	
+		}
+		
+		&Image{
+		    width: 100%;
+			max-width: 200px;
+			display: flex;
+			margin-left: 20px;
+			align-self: flex-end;	
+			
+			@media(max-width: $tablemin){
+				max-width: 100%;
+				margin-left: unset;
+				order: 3;
+				margin-top: 16px;
+			}
+			
+			img{
+			    height: 100%;
+				width: 100%;
+				object-fit: contain;	
+			}
+		}
+	
+		&Description{
+		    max-width: 490px;
+			width: 40%;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 32px;
+			line-height: 120%;
+			color: #000000;
+			margin-left: 80px;	
+			
+			@media(max-width: $tablemin){
+			    max-width: 100%;
+				margin-left: 0;
+				width: 100%;
+				font-size: 20px;
+				text-align: center;
+				margin-bottom: 16px;
+			}
+			
+			white{
+			color: #fff;
+			}
+			
+		}
+		
+		&Button{
+		    display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 20px;
+			background: #000000;
+			border: 1px solid #FFFFFF;
+			font-weight: 600;
+			font-size: 16px;
+			line-height: 160%;
+			color: #FFFFFF;
+			margin-top: 16px;
+			cursor: pointer;
+			transition: .3s;
+			min-width: 270px;
+			margin-right: 90px;	
+			
+			@media(max-width: $tablemin){
+				margin: unset;
+			}
+			
+		}
+		
+	}
+}

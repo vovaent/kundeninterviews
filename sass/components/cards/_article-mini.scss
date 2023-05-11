@@ -1,0 +1,97 @@
+/* CSS Document */
+
+.MinArticle{
+	display: flex;
+    height: 123px;
+    margin: 8px;
+    width: calc(100% / 3 - 16px);
+    border: 1px solid #000;
+	cursor: pointer;
+	position: relative;
+	background-color: #CCF3EA;
+	    min-width: 320px;
+	    max-width: 100%;
+	
+	@media(max-width: $tablemin){
+			width: 100%;
+		}
+	
+	&:nth-child(3n+2){
+		background-color: #fff;
+	}
+	
+	&Linck{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 1;
+	}
+	
+	&Top{
+		display: flex;
+		
+		&Image{
+		    aspect-ratio: 183/123;
+			
+			@media(max-width: $tablemin){
+			aspect-ratio: 133/123;
+			}
+			
+			img{
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+	
+	&Bottom{
+		padding: 18px;
+		border-left: 1px solid #000;
+		width: 100%;
+		height: 100%;
+		
+		@media(max-width: $tablemin){
+			padding: 16px;
+			}
+		
+		&Stat{
+			display: flex;
+			align-items: center;
+			margin-bottom: 8px;
+			
+			&Date{
+				color: #06A57E;
+				font-weight: 600;
+				font-size: 12px;
+			}
+			
+			svg{
+				margin: 0 8px;	
+			}
+			
+			&Time{
+				color: #06A57E;
+				font-weight: 600;
+				font-size: 12px;
+			}
+		}
+		
+		&Title{
+			font-weight: 600;
+			font-size: 16px;
+			line-height: 120%;
+			color: #000000;
+			
+			@media(max-width: $tablemin){
+			font-size: 14px;
+			}
+			
+		}
+		
+	}
+	
+	
+}

@@ -1,0 +1,125 @@
+/* CSS Document */
+
+.ArtCTA{
+	display: flex;
+    background: #19C79D;
+    border: 1px solid #000000;
+    padding: 13px 20px 0px 20px;
+    margin: 48px auto;
+	position: relative;
+	
+	@media(max-width: $tablemin){
+		flex-direction: column-reverse;
+	}
+	
+	&Icon{
+		&.Mobile{
+			display: none;
+			position: absolute;
+			top: 8px;
+    		right: 4px;
+			height: 60px;
+			width: 60px;
+			
+			img{
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				object-position: bottom;	
+			}
+			
+			@media(max-width: $tablemin){
+		    display: flex;
+			}
+		}
+	}
+	
+	&Image{
+		max-width: 267px;
+		width: 35%;
+		display: flex;
+		
+		@media(max-width: $tablemin){
+		    max-width: 100%;
+			width: 100%;
+			margin-top: 16px;
+			display: none;
+		}
+		
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			object-position: bottom;
+		}
+		
+		&.Mobile{
+			display: none;
+			@media(max-width: $tablemin){
+		    display: flex;
+			}
+		}
+		
+	}
+	
+	&Content{
+		width: 75%;
+		padding-left: 85px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		
+		@media(max-width: $tablemin){
+			width: 100%;
+			padding: unset;
+			padding-top: 64px;
+		}
+		
+		&Description{
+			font-weight: 600;
+			font-size: 32px;
+			line-height: 120%;
+			color: #000000;
+			
+			@media(max-width: $tablemin){
+				font-weight: 600;
+				font-size: 20px;
+				line-height: 120%;
+				text-align: center;
+			}
+			
+			white{
+				color: #fff;
+			}
+		}
+		
+		&Button{
+			background: #000000;
+			border: 1px solid #FFFFFF;
+			padding: 20px 32px;
+			min-width: 279px;
+			display: flex;
+			width: fit-content;
+			color: #fff;
+			font-size: 16px;
+			align-items: center;
+			justify-content: center;
+			margin-top: 16px;
+			text-decoration: unset;
+			transform: scale(1);
+			transition: .3s;
+			
+			&:hover{
+				color: #fff;
+				transform: scale(1.03);
+			}
+			
+			&:visited{
+				color: #fff;
+			}
+			
+		}
+		
+	}
+	
+}

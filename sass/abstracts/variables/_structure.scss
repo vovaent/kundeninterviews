@@ -1,0 +1,12 @@
+$size__site-main: 100%;
+$size__site-sidebar: 25%;
+
+$container: 71.25rem; // 1140px
+$containermin: 35rem; // 560px
+$containermax: 85rem; // 1360px
+$halfcontainer: calc((100vw - 80rem)/2);
+$halfcontainerminus: calc(((100vw - 80rem)/2)*-1);
+$maxcontainer: 90rem; // 1440px
+$table: 64rem; // 1024px
+$tablemin: 48rem; // 768px
+$mob: 31.25rem; // 500px

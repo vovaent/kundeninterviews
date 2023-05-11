@@ -1,0 +1,32 @@
+// CONTAINER
+.container{
+  width: $container;
+  margin: 0 auto;
+  @media (max-width: $container){
+    width: 100%;
+    padding: 0 9.375rem;
+  }
+  @media (max-width: $table){
+    padding: 0 1.25rem;
+  }
+  &Min{
+    width: $containermin;
+    margin: 0 auto;
+    @media (max-width: $tablemin){
+      width: 100%;
+      padding: 0 1.25rem;
+    }
+  }
+  &Max{
+    width: $containermax;
+    margin: 0 auto;
+    @media (max-width: $maxcontainer){
+      width: 100%;
+      padding: 0 5rem;
+    }
+    @media (max-width: $table){
+      width: 100%;
+      padding: 0 1.25rem;
+    }
+  }
+}

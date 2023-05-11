@@ -1,0 +1,67 @@
+/* CSS Document */
+
+.CTAMedium{
+	display: flex;
+    flex-direction: column;
+    width: calc(100% / 4 - 16px);
+    margin: 8px;
+    border: 1px solid #000000;
+    position: relative;
+    background-color: #19C79D;
+    padding: 32px;
+	
+	min-width: 320px;
+	    max-width: 100%;
+	
+	@media(max-width: $tablemin){
+			width: 100% !important;
+		}
+	
+	&Icon{
+	    width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 23px auto 56px;	
+	}
+	
+	&Description{
+		font-weight: 600;
+		font-size: 26px;
+		line-height: 120%;
+		color: #000000;
+		text-align: center;
+		
+		@media(max-width: $tablemin){
+			font-size: 22px;
+		}
+		
+		white{
+			color: #fff;
+		}
+		
+	}
+	
+	&Button{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 20px;
+		background: #000000;
+		border: 1px solid #FFFFFF;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 160%;
+		color: #FFFFFF;
+		margin-top: 16px;
+		cursor: pointer;
+		transition: .3s;
+		
+		&:hover{
+			color: #19C79D;
+		}
+	}
+	
+	
+}

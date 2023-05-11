@@ -1,0 +1,115 @@
+/* CSS Document */
+
+.TagCloud{
+	margin: 140px auto;
+	
+	@media(max-width: $tablemin){
+		    margin: 80px auto;
+	}
+	
+	
+	&Content{
+		max-width: 800px;
+    	margin: auto;
+		
+		
+		&Title{
+			font-weight: 600;
+			font-size: 56px;
+			line-height: 130%;
+			color: #000000;
+			text-align: center;
+			margin-bottom: 48px;
+			
+			@media(max-width: $tablemin){
+		       font-size: 32px;
+    			margin-bottom: 32px
+			}
+			
+			green{
+				color: #19C79D;
+			}
+			
+		}
+		
+		&Tags{
+		    display: flex;
+			flex-wrap: wrap;
+			margin: -8px;
+			justify-content: center;
+			
+			
+			&Item{
+				padding: 24px 32px;
+				background: #CCF3EA;
+				border: 1px solid #000000;
+				font-weight: 600;
+				font-size: 16px;
+				line-height: 120%;
+				color: #000000;
+				cursor: pointer;
+				width: max-content;
+				position: relative;
+				margin: 8px;
+				
+				@media(max-width: $tablemin){
+					font-size: 14px;
+    				padding: 16px 14px;
+				}
+				
+				&::after{
+					content: '#';
+					position: absolute;
+					display: block;
+					color: #000;
+					font-weight: 600;
+					font-size: 16px;
+					top: 6px;
+					left: 6px;
+					z-index: 1;
+					
+					@media(max-width: $tablemin){
+						display: none;
+					}
+				}
+				
+				&::before{
+					content: '#';
+					position: absolute;
+					display: block;
+					color: #000;
+					font-weight: 600;
+					font-size: 16px;
+					bottom: 6px;
+					right: 6px;
+					z-index: 1;
+					
+					@media(max-width: $tablemin){
+						display: none;
+					}
+				}
+				
+				&:nth-child(3n+1){
+					background: #CCF3EA;
+				}
+				
+				&:nth-child(4n+2){
+					background: #fff;
+				}
+				
+				&:nth-child(4){
+					background: #19C79D;
+				}
+				&:nth-child(5n+5){
+					background: #19C79D;
+				}
+				&:nth-child(7){
+					background: #19C79D;
+				}
+				
+			}
+			
+		}
+		
+	}
+}

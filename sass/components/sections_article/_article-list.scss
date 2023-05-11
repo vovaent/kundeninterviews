@@ -1,0 +1,49 @@
+/* CSS Document */
+
+.ArtList{
+	&Title{
+		font-size: 20px;
+		line-height: 100%;
+		color: #000000;
+		margin-bottom: 24px;
+	}
+	
+	&Content{
+		&Item{
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+			
+			&:last-child{
+				margin-bottom: 0px;
+			}
+			
+			&Num{
+				height: 28px;
+				width: 28px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: #FFFFFF;
+				border: 1px solid #000000;
+				border-radius: 100px;
+				color: #19C79D;
+				font-feature-settings: 'case' on;
+				font-size: 16px;
+			}
+			
+			&Ol{
+				margin-left: 20px;
+			}
+			
+			&Text{
+				font-size: 16px;
+				line-height: 160%;
+				color: #000000;
+				margin-left: 8px;
+			}
+			
+		}
+	}
+	
+}

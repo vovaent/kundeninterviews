@@ -1,0 +1,56 @@
+/* CSS Document */
+
+.CTAMin{
+	display: flex;
+    height: 123px;
+    margin: 8px;
+    width: calc(100% / 3 - 16px);
+    border: 1px solid #000;
+	position: relative;
+	background-color: #19C79D;
+	align-items: center;
+	
+	
+	
+	&Icon{
+	    width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: auto;
+    	margin-left: 5px;
+	}
+	
+	&Description{
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 120%;
+		color: #000000;
+		text-align: center;
+		margin-right: 15px;
+    	margin-left: 10px;
+	}
+	
+	&Button{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 10px;
+		background: #000000;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 120%;
+		color: #FFFFFF;
+		cursor: pointer;
+		transition: .3s;
+		height: 100%;
+		text-align: center;
+		
+		&:hover{
+			color: #19C79D;
+		}
+	}
+	
+	
+}

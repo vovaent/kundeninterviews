@@ -1,0 +1,59 @@
+/* CSS Document */
+
+.Notfound{
+	display: flex;
+    justify-content: space-between;
+    margin: 80px auto 140px;
+    align-items: center;
+	
+	@media(max-width: $tablemin){
+		flex-direction: column;
+   		margin: 56px auto 100px;
+	}
+	
+	&Info{
+		max-width: 415px;
+    	width: 40%;
+		
+		@media(max-width: $tablemin){
+			width: 100%;
+			max-width: 100%;
+		}
+		
+		&Title{
+			font-weight: 600;
+			font-size: 56px;
+			line-height: 130%;
+			color: #000000;
+			
+			@media(max-width: $tablemin){
+				font-size: 32px;
+			}
+		}
+		
+		&Desc{
+		    font-weight: 400;
+			font-size: 16px;
+			line-height: 160%;
+			color: #000000;
+			margin-top: 24px;	
+			
+			@media(max-width: $tablemin){
+				margin-top: 32px;
+				margin-bottom: 32px;
+			}
+			
+		}
+		
+	}
+	
+	&Image{
+		width: 55%;
+    	display: flex;
+		
+		@media(max-width: $tablemin){
+			width: 100%;
+		}
+	}
+	
+}

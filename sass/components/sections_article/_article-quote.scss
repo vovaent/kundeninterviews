@@ -1,0 +1,115 @@
+/* CSS Document */
+
+.ArtQuote{
+	padding: 32px 56px;
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    margin: 48px auto;
+	
+	@media(max-width: $tablemin){
+		padding: 24px;
+	}
+	
+	&Icon{
+		position: absolute;
+		width: 140px;
+		right: 40px;
+		top: -24px;
+		
+		svg{
+			width: 100%;
+			height: auto;
+		}
+		
+		@media(max-width: $tablemin){
+		    width: 68px;
+    		right: 10px;
+		}
+	}
+	
+	&Content{
+		display: flex;
+		
+		@media(max-width: $tablemin){
+		    align-items: center;
+		}
+		
+		&Avatar{
+			width: 64px;
+			height: 64px;
+			border: 1px solid #000000;
+			border-radius: 100px;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-right: 24px;
+			min-width: 64px;
+			
+			img{
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+			}
+			
+		}
+		
+		&Text{
+			max-width: 550px;
+    		margin-right: 90px;
+			
+			@media(max-width: $tablemin){
+		    	margin-right: unset;
+			}
+			
+			&Name{
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 160%;
+				color: #000000;
+			}
+			
+			&Position{
+				font-size: 12px;
+				line-height: 160%;
+				color: #8D8D8D;
+			}
+			
+			&Area{
+				font-size: 20px;
+				line-height: 150%;
+				color: #070707;
+				max-width: 550px;
+				margin-right: 90px;
+				
+				@media(max-width: $tablemin){
+					display: none;
+				}
+				
+			}
+			
+			
+		}
+		
+		
+		
+	}
+	
+	&Area{
+		display: none;
+		margin-top: 24px;
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 150%;
+		color: #070707;
+		
+			&.Mobile{
+				@media(max-width: $tablemin){
+					display: block;
+				}
+				
+			}
+		}
+	
+}
