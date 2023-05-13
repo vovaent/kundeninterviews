@@ -10,13 +10,13 @@
 get_header();
 
 $args = array(
-	'post_type' => 'post',
-	'post_status' => 'publish',
-	'cat' => is_category(),
+	'post_type'      => 'post',
+	'post_status'    => 'publish',
+	'cat'            => is_category(),
 	'posts_per_page' => 15,
 );
  
-$myquery = new WP_Query($args);
+$myquery = new WP_Query( $args );
 
 $max_num_pages = $myquery->max_num_pages;
 
@@ -26,7 +26,7 @@ $max_num_pages = $myquery->max_num_pages;
 	<div class="container">
 		<div class="Category">
 				<div class="CategoryTitle">
-					<?php single_cat_title('' , true ) ?>
+					<?php single_cat_title( '', true ); ?>
 				</div>
 
 				<div class="CategoryPosts">
@@ -51,13 +51,13 @@ $max_num_pages = $myquery->max_num_pages;
 			
 				<div class="CategoryCloud">
 					<div class="CategoryCloudTitle">
-						<?php echo esc_html__( 'Tag-Cloud', 'kundeninterviews' ) ?>
+						<?php echo esc_html__( 'Tag-Cloud', 'kundeninterviews' ); ?>
 					</div>
-					<?php if($tags = get_tags( [ 'hide_empty' => false ] )){?>
+					<?php if ( $tags = get_tags( array( 'hide_empty' => false ) ) ) { ?>
 					<div class="CategoryCloudTags">
-						<?php foreach($tags as $item){ ?>
-							<div class="CategoryCloudTagsItem" data-tagid="<?php echo $item->term_id ?>" onClick="location.href='<?php echo get_tag_link($item) ?>'">
-								<?php echo $item->name ?>
+						<?php foreach ( $tags as $item ) { ?>
+							<div class="CategoryCloudTagsItem" data-tagid="<?php echo $item->term_id; ?>" onClick="location.href='<?php echo get_tag_link( $item ); ?>'">
+								<?php echo $item->name; ?>
 							</div>
 						<?php } ?>
 					</div>
@@ -75,6 +75,7 @@ $max_num_pages = $myquery->max_num_pages;
 			</style>
 			
 			<script>
+				$(document).ready(function() {
 				
 				var page = 1;
 				
@@ -82,7 +83,7 @@ $max_num_pages = $myquery->max_num_pages;
 					
 					$('.CategoryPaginationNumber').empty();
 					var i = 1;
-					var max_num_pages = <?php echo $max_num_pages ?>;
+					var max_num_pages = <?php echo $max_num_pages; ?>;
 					if(max_num_pages > 5){
 					if(page > 1){
 						$('.CategoryPaginationNumber').append('<div>...</div>')	
@@ -147,17 +148,18 @@ $max_num_pages = $myquery->max_num_pages;
 					
 					$.ajax({
 						type: 'POST',
-						url: '/wp-admin/admin-ajax.php',
+						url: frontendajax.ajaxUrl,
 						data: {
 						  action: 'kundeninterviews_card_load',
-						  categories: <?php echo is_category() ?>,
+						  nonce: frontendajax.nonce,
+						  categories: <?php echo is_category(); ?>,
 						  card_type: 'medium',
 						  q_posts: 15,
 						  paged: page,
-						  <?php if($cat = get_field('cta' , 'category_'.is_category())){ ?>
+						  <?php if ( $cat = get_field( 'cta', 'category_' . is_category() ) ) { ?>
 						  cta_on:'on',
 						  full_cta_on: 'on',
-						  cta_content: <?php echo json_encode($cat) ?>,
+						  cta_content: <?php echo json_encode( $cat ); ?>,
 						  <?php } ?>
 						  number_row: 3,
 						 
@@ -189,12 +191,13 @@ $max_num_pages = $myquery->max_num_pages;
 				})
 				
 				$('body').on('click', '.CategoryPaginationNext',function(){
-					if(page + 1 <= <?php echo $max_num_pages ?>){
+					if(page + 1 <= <?php echo $max_num_pages; ?>){
 					page = page + 1;
 					render_pagination(page);
 					card_load(page);
 					}
 				})
+			});
 
 			</script>
 
