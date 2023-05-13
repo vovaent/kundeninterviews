@@ -49,8 +49,8 @@ function kundeninterviews_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'header' => esc_html__( 'Header', 'kundeninterviews' ),
-			'footer' => esc_html__( 'Footer', 'kundeninterviews' ),
+			'header'        => esc_html__( 'Header', 'kundeninterviews' ),
+			'footer'        => esc_html__( 'Footer', 'kundeninterviews' ),
 			'footerprivacy' => esc_html__( 'FooterPrivacy', 'kundeninterviews' ),
 		)
 	);
@@ -144,18 +144,27 @@ function kundeninterviews_scripts() {
 	wp_style_add_data( 'kundeninterviews-style', 'rtl', 'replace' );
 	
 	wp_deregister_script( 'jquery' );
-	wp_register_script( 'jquery', get_template_directory_uri() . '/js/jquery-3.6.0.min.js');
+	wp_register_script( 'jquery', get_template_directory_uri() . '/js/jquery-3.6.0.min.js' );
 	wp_enqueue_script( 'jquery' );
 	
-	wp_enqueue_script( 'kundeninterviews-custom', get_template_directory_uri() . '/js/custom.js', array('jquery'), _S_VERSION, true );
+	wp_enqueue_script( 'kundeninterviews-custom', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ), _S_VERSION, true );
 	
-	wp_enqueue_script( 'kundeninterviews-swiper', get_template_directory_uri() . '/js/swiper-bundle.min.js', array('jquery'), _S_VERSION, true );
+	wp_enqueue_script( 'kundeninterviews-swiper', get_template_directory_uri() . '/js/swiper-bundle.min.js', array( 'jquery' ), _S_VERSION, true );
 
 	wp_enqueue_script( 'kundeninterviews-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	wp_localize_script(
+		'kundeninterviews-custom',
+		'frontendajax',
+		array(
+			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'nonce'   => wp_create_nonce( 'kundeninterviews_card_load' ),
+		) 
+	);
 }
 add_action( 'wp_enqueue_scripts', 'kundeninterviews_scripts' );
 
@@ -190,58 +199,63 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  * Register Acf Theme General Settings.
  */
 
-add_action('acf/init', 'theme_settings_init');
+add_action( 'acf/init', 'theme_settings_init' );
 function theme_settings_init() {
 
-    // Check function exists.
-    if( function_exists('acf_add_options_page') ) {
+	// Check function exists.
+	if ( function_exists( 'acf_add_options_page' ) ) {
 
-        // Register options page.
-        $option_page = acf_add_options_page(array(
-            'page_title'    => __('Allgemeine Einstellungen des Themas'),
-            'menu_title'    => __('Themen Einstellungen'),
-            'menu_slug'     => 'theme-general-settings',
-            'capability'    => 'edit_posts',
-            'redirect'      => false
-        ));
-    }
+		// Register options page.
+		$option_page = acf_add_options_page(
+			array(
+				'page_title'    => __( 'Allgemeine Einstellungen des Themas' ),
+				'menu_title'    => __( 'Themen Einstellungen' ),
+				'menu_slug'     => 'theme-general-settings',
+				'capability'    => 'edit_posts',
+				'redirect'      => false,
+			)
+		);
+	}
 }
 
 /**
  * Register Gutenberg new category.
  */
 
-add_filter( 'block_categories_all' , function( $categories ) {
+add_filter(
+	'block_categories_all',
+	function( $categories ) {
 
-	$categories[] = array(
-		'slug'  => 'custom-for-post',
-		'title' => 'For Post'
-	);
+		$categories[] = array(
+			'slug'  => 'custom-for-post',
+			'title' => 'For Post',
+		);
 
-	return $categories;
-} );
+		return $categories;
+	} 
+);
 
 /**
  * Register Acf + Gutenberg file.
  */
 
-function includeAcfGuten(){
+function includeAcfGuten() {
 
-$dir_gutenberg_blocks = get_template_directory() ."/gutenberg_blocks/register";
-if( function_exists('acf_register_block') ) {
-	$catalog_gutenblock = opendir($dir_gutenberg_blocks);
-	while($filename = readdir($catalog_gutenblock)){
+	$dir_gutenberg_blocks = get_template_directory() . '/gutenberg_blocks/register';
+	if ( function_exists( 'acf_register_block' ) ) {
+		$catalog_gutenblock = opendir( $dir_gutenberg_blocks );
+		while ( $filename = readdir( $catalog_gutenblock ) ) {
 		
-		if($filename !== '.' && $filename !== '..'){
-		$filename = $dir_gutenberg_blocks."/".$filename;
-		include_once($filename);
+			if ( $filename !== '.' && $filename !== '..' ) {
+				$filename = $dir_gutenberg_blocks . '/' . $filename;
+				include_once $filename;
+			}
 		}
-	}
-	closedir($catalog_gutenblock);
+		closedir( $catalog_gutenblock );
 
 	}
 }
-add_action('acf/init', 'includeAcfGuten');
+add_action( 'acf/init', 'includeAcfGuten' );
 
 /**
  * Render Acf + Gutenberg file.
@@ -249,95 +263,137 @@ add_action('acf/init', 'includeAcfGuten');
 
 function my_acf_block_render_callback( $block, $content = '', $is_preview = false, $post_id = 0, $wp_block = false, $context = false ) {
 
-    // convert name ("acf/testimonial") into path friendly slug ("testimonial")
-    $slug = str_replace('acf/', '', $block['name']);
+	// convert name ("acf/testimonial") into path friendly slug ("testimonial")
+	$slug = str_replace( 'acf/', '', $block['name'] );
 
-    // include a template part from within the "template-parts/block" folder
-    if( file_exists( get_theme_file_path("/gutenberg_blocks/blocks/section-{$slug}.php") ) ) {
-        	include( get_theme_file_path("/gutenberg_blocks/blocks/section-{$slug}.php") );
+	// include a template part from within the "template-parts/block" folder
+	if ( file_exists( get_theme_file_path( "/gutenberg_blocks/blocks/section-{$slug}.php" ) ) ) {
+			include get_theme_file_path( "/gutenberg_blocks/blocks/section-{$slug}.php" );
 
-    }else{
-		echo(get_theme_file_path("/gutenberg_blocks/blocks/section-{$slug}.php"));
-		echo('file not exist');
+	} else {
+		echo( get_theme_file_path( "/gutenberg_blocks/blocks/section-{$slug}.php" ) );
+		echo( 'file not exist' );
 	}
 }
 
 /**
  * AJAX Render cards.
  */
-
 function kundeninterviews_card_load() {
+	
+	// Check for nonce security.
+	$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+	if ( ! wp_verify_nonce( $nonce, 'kundeninterviews_card_load' ) ) {
+		wp_die();
+	}
 
+	$posts_per_page = isset( $_POST['q_posts'] ) ? (int) sanitize_text_field( wp_unslash( $_POST['q_posts'] ) ) : 0;
+	$paged          = isset( $_POST['paged'] ) ? (int) sanitize_text_field( wp_unslash( $_POST['paged'] ) ) : 1;
 	
 	$ajaxpostsarg = array(
-	'post_type' => 'post',
-    'posts_per_page' => $_POST['q_posts'],
-	'paged' => $_POST['paged'],
-    'post_status' => 'publish',
-    'orderby' => 'date',
-    'order' => 'DESC'
-  );
+		'post_type'      => 'post',
+		'posts_per_page' => $posts_per_page,
+		'paged'          => $paged,
+		'post_status'    => 'publish',
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+	);
 	
-		if($posts = $_POST['posts']){
-		$ajaxpostsarg['post__in'] = explode(',', $posts) ;
-		}
+	$posts = isset( $_POST['posts'] ) ? sanitize_text_field( wp_unslash( $_POST['posts'] ) ) : '';
+	if ( $posts ) {
+		$ajaxpostsarg['post__in'] = explode( ',', $posts );
+	}
 	
-		if($categories = $_POST['categories']){
-		$ajaxpostsarg['cat'] = explode(',', $categories);
-		}
+	$categories = isset( $_POST['categories'] ) ? sanitize_text_field( wp_unslash( $_POST['categories'] ) ) : '';
+	if ( $categories ) {
+		$ajaxpostsarg['cat'] = explode( ',', $categories );
+	}
 	
-		if($tags = $_POST['tags']){
-		$ajaxpostsarg['tag'] = explode(',', $tags);
-		}
-		
-		if($_POST['card_type'] == 'medium'){
-			$number_row = $_POST['number_row'];
-		}else{
-			$number_row = 3;
-		}
-		
+	$tag_ids = isset( $_POST['tag_ids'] ) ? sanitize_text_field( wp_unslash( $_POST['tag_ids'] ) ) : '';
+	if ( $tag_ids ) {
+		$ajaxpostsarg['tag__in'] = explode( ',', $tag_ids );
+	}
 	
-		if($_POST['cta_on']=='on' && $_POST['paged']==1 && $ajaxpostsarg['posts_per_page'] % $number_row == 0 && $_POST['cta_content']){
-		$ajaxpostsarg['posts_per_page'] = $ajaxpostsarg['posts_per_page']-1 ;
-		}
+	$card_type = isset( $_POST['card_type'] ) 
+	? sanitize_text_field( wp_unslash( $_POST['card_type'] ) ) 
+	: '';
 	
-		if($_POST['cta_on']=='on' && $_POST['paged'] >= 2 && $ajaxpostsarg['posts_per_page'] % $number_row == 0 && $_POST['cta_content']){
-			$ajaxpostsarg['offset'] = $number_row-1;
-			$ajaxpostsarg['paged'] = $_POST['paged']-1 ;
-		}
+	$number_row = isset( $_POST['number_row'] ) && 'medium' === $card_type 
+	? sanitize_text_field( wp_unslash( $_POST['number_row'] ) ) 
+	: 3;
+	
+	$cta_on      = isset( $_POST['cta_on'] ) ? sanitize_text_field( wp_unslash( $_POST['cta_on'] ) ) : '';
+	$cta_content = isset( $_POST['cta_content'] ) 
+		? wp_unslash( $_POST['cta_content'] )
+		: array();
 
-  $ajaxposts = new WP_Query($ajaxpostsarg);
-  $response = '';
- 
-  if($ajaxposts->have_posts()) {
-	$i = 1;
-    while($ajaxposts->have_posts()) : $ajaxposts->the_post();
-      $response .= get_template_part('cards/card', 'article_'.$_POST['card_type']);
-	  
-	  if($_POST['cta_on']=='on' && $_POST['paged']==1 && $_POST['cta_content'] && $i==5){
-		$response .= get_template_part('cards/card', 'cta_'.$_POST['card_type'], $_POST['cta_content']);
-	  }
-	  
-	  if($_POST['full_cta_on']=='on' && $_POST['paged']==1 && $_POST['cta_content'] && $i==11){
-		$response .= get_template_part('cards/card', 'cta_full', $_POST['cta_content']);
-	  }
-	  
-	$i++;  
-    endwhile;
-  } else {
-    $response = '';
-  }
+	if ( is_string( $cta_content ) ) {
+		$cta_content = json_decode( $cta_content, 1 );
+	}
 	
+	if ( 'on' === $cta_on && 
+		1 === $paged && 
+		0 === $ajaxpostsarg['posts_per_page'] % $number_row && 
+		$cta_content 
+	) {
+		$ajaxpostsarg['posts_per_page'] = $ajaxpostsarg['posts_per_page'] - 1;
+	}
 	
-  if($ajaxposts->max_num_pages > $_POST['paged'] && $_POST['show_more']=='on'){
-	 $response .= "<div id='show_more' class='ShowMore' > Show more  </div>" ;
-  }
+	if ( 'on' === $cta_on && 
+		2 <= $paged && 
+		0 === $ajaxpostsarg['posts_per_page'] % $number_row && 
+		$cta_content
+	) {
+		$ajaxpostsarg['offset'] = $number_row - 1;
+		$ajaxpostsarg['paged']  = $paged - 1;
+	}
+	
+	$ajaxposts = new WP_Query( $ajaxpostsarg );
+	$response  = '';
+	
+	$full_cta_on = isset( $_POST['full_cta_on'] ) ? sanitize_text_field( wp_unslash( $_POST['full_cta_on'] ) ) : '';
+	
+	if ( $ajaxposts->have_posts() ) {
+		$i = 1;
+		while ( $ajaxposts->have_posts() ) :
+			$ajaxposts->the_post();
 
-  echo $response;
-  exit;
+			$response .= get_template_part( 'cards/card', 'article_' . $card_type );
+	
+			if ( 'on' === $cta_on && 
+				1 === $paged && 
+				$cta_content && 
+				5 === $i
+			) {
+				$response .= get_template_part( 'cards/card', 'cta_' . $card_type, $cta_content );
+			}
+	  
+			if ( 'on' === $full_cta_on && 
+				1 === $paged && 
+				$cta_content && 
+				11 === $i
+			) {
+				$response .= get_template_part( 'cards/card', 'cta_full', $cta_content );
+			}
+			
+			$i++;
+		endwhile;
+		wp_reset_postdata();
+	} else {
+		$response = '';
+	}
+	
+		$show_more = isset( $_POST['show_more'] ) ? sanitize_text_field( wp_unslash( $_POST['show_more'] ) ) : '';
+	
+	if ( $ajaxposts->max_num_pages > $paged && 'on' === $show_more ) {
+		$response .= "<div id='show_more' class='ShowMore' > Show more  </div>";
+	}
+
+		echo $response;
+		exit;
 }
-add_action('wp_ajax_kundeninterviews_card_load', 'kundeninterviews_card_load');
-add_action('wp_ajax_nopriv_kundeninterviews_card_load', 'kundeninterviews_card_load');
+add_action( 'wp_ajax_kundeninterviews_card_load', 'kundeninterviews_card_load' );
+add_action( 'wp_ajax_nopriv_kundeninterviews_card_load', 'kundeninterviews_card_load' );
 
 
 
@@ -350,23 +406,23 @@ add_action('wp_ajax_nopriv_kundeninterviews_card_load', 'kundeninterviews_card_l
 if ( ! function_exists( 'reading_time' ) ) {
 	function reading_time() {
 		$total_word_count = 0;
-		$text = get_the_content( '' );
+		$text             = get_the_content( '' );
 		$total_word_count = $total_word_count + str_word_count( strip_tags( $text ) );
-		$readingtime = ceil( $total_word_count / 200 );
+		$readingtime      = ceil( $total_word_count / 200 );
 
 		if ( $readingtime <= 1 ) {
 			$timer = esc_html__( ' min', 'kundeninterviews' );
 		} else {
 			$timer = esc_html__( ' min', 'kundeninterviews' );
 		}
-		if ( $readingtime == 0 ) {
-			$totalreadingtime = '<span>1 </span>'.'<span>'.$timer.'</span>';
+		if ( 0 === $readingtime ) {
+			$totalreadingtime = '<span>1 </span><span>' . $timer . '</span>';
 		} else {
-			$totalreadingtime = '<span>'.$readingtime.' </span>'.'<span>'.$timer.'</span>';
+			$totalreadingtime = '<span>' . $readingtime . ' </span><span>' . $timer . '</span>';
 		}
 
 		return $totalreadingtime;
 	}
 }
 
-
+require_once get_template_directory() . '/inc/tag.php';
