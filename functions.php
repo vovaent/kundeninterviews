@@ -376,3 +376,8 @@ if (!function_exists('reading_time')) {
         return $totalreadingtime;
     }
 }
+
+/**
+ * Author page settings
+ */
+require_once(get_template_directory() . '/inc/author.php');
