@@ -45,7 +45,7 @@ $topPosts2 = new WP_Query(array(
                             </div>
                             <div class="HeroBigArticleBottom">
                                 <div class="HeroBigArticleBottomDate">
-                                    <?php echo (get_the_date('F d, Y')); ?>
+                                    <?php echo (get_the_date('d. F Y')); ?>
                                 </div>
                                 <div class="HeroBigArticleBottomTitle">
                                     <?php if ($title = get_field('title', get_the_ID())) {
