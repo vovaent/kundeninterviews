@@ -38,7 +38,7 @@ $topPosts2 = new WP_Query(array(
                                     <?php echo reading_time(get_the_ID()); ?>
                                 </div>
                                 <div class="HeroBigArticleTopImage">
-                                    <?php if ($article_img = get_the_post_thumbnail_url(get_the_ID(), 'medium')) { ?>
+                                    <?php if ($article_img = get_the_post_thumbnail_url(get_the_ID(), 'large')) { ?>
                                         <img src="<?php echo $article_img ?>" alt="thumbnail">
                                     <?php } ?>
                                 </div>
@@ -77,7 +77,7 @@ $topPosts2 = new WP_Query(array(
                                     <?php echo reading_time(get_the_ID()); ?>
                                 </div>
                                 <div class="HeroMinArticleTopImage">
-                                    <?php if ($article_img = get_the_post_thumbnail_url(get_the_ID(), 'medium')) { ?>
+                                    <?php if ($article_img = get_the_post_thumbnail_url(get_the_ID(), 'medium_large')) { ?>
                                         <img src="<?php echo $article_img ?>" alt="thumbnail">
                                     <?php } ?>
                                 </div>
