@@ -52,7 +52,6 @@ function kundeninterviews_setup()
     register_nav_menus(
         array(
             'header' => esc_html__('Header', 'kundeninterviews'),
-            'footer' => esc_html__('Footer', 'kundeninterviews'),
             'footerprivacy' => esc_html__('FooterPrivacy', 'kundeninterviews'),
         )
     );
@@ -297,6 +296,10 @@ function kundeninterviews_card_load()
         $ajaxpostsarg['tag__in'] = explode(',', $tags);
     }
 
+    if ($tag = $_POST['tag']) {
+        $ajaxpostsarg['tag_id'] = $tag;
+    }
+
     if ($_POST['card_type'] == 'medium') {
         $number_row = $_POST['number_row'];
     } else {
@@ -321,11 +324,11 @@ function kundeninterviews_card_load()
         while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
             $response .= get_template_part('cards/card', 'article_' . $_POST['card_type']);
 
-            if ($_POST['cta_on'] == 'on' && $_POST['paged'] == 1 && $_POST['cta_content'] && $i == 5) {
+            if (isset($_POST['cta_on']) && $_POST['cta_on'] == 'on' && $_POST['paged'] == 1 && $_POST['cta_content'] && $i == 5) {
                 $response .= get_template_part('cards/card', 'cta_' . $_POST['card_type'], $_POST['cta_content']);
             }
 
-            if ($_POST['full_cta_on'] == 'on' && $_POST['paged'] == 1 && $_POST['cta_content'] && $i == 11) {
+            if (isset($_POST['full_cta_on']) && $_POST['full_cta_on'] == 'on' && $_POST['paged'] == 1 && $_POST['cta_content'] && $i == 11) {
                 $response .= get_template_part('cards/card', 'cta_full', $_POST['cta_content']);
             }
 
@@ -336,8 +339,18 @@ function kundeninterviews_card_load()
     }
 
 
-    if ($ajaxposts->max_num_pages > $_POST['paged'] && $_POST['show_more'] == 'on') {
-        $response .= "<div id='show_more' class='ShowMore' > Show more  </div>";
+    if ($ajaxposts->max_num_pages > $_POST['paged']) {
+        if (isset($_POST['settings_button'])) {
+            if ($_POST['settings_button']['button_select'] == 'load_more') {
+                if ($_POST['settings_button']['load_more'] == 'on') {
+                    $response .= '<div id="load_more" class="ButtonShowPosts" >' . esc_html__('Mehr laden', 'kundeninterviews') . '</div>';
+                }
+            } else if ($_POST['settings_button']['button_select'] == 'show_all') {
+                if ($_POST['settings_button']['show_all'] == 'on') {
+                    $response .= '<a href="' . get_tag_link($tag) . '" id="show_all" class="ButtonShowPosts" >' . esc_html__('Zeige alles', 'kundeninterviews') . '</a>';
+                }
+            }
+        }
     }
 
     echo $response;

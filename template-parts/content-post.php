@@ -5,7 +5,7 @@
         <div class="container">
             <div class="ArticleTop">
                 <div class="ArticleTopStat">
-                    <div class="ArticleTopStatDate"> <?php echo (get_the_date('F d, Y')); ?> </div>
+                    <div class="ArticleTopStatDate"> <?php echo (get_the_date('d. F  Y')); ?> </div>
 
                     <svg width="6" height="5" viewBox="0 0 6 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 0L5.59808 4.5H0.401924L3 0Z" fill="black" />
