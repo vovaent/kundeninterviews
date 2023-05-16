@@ -300,7 +300,7 @@ function kundeninterviews_card_load()
         $ajaxpostsarg['tag_id'] = $tag;
     }
 
-    if ($_POST['card_type'] == 'medium') {
+    if ($_POST['card_type'] == 'medium' || $_POST['card_type'] == 'medium-mini') {
         $number_row = $_POST['number_row'];
     } else {
         $number_row = 3;

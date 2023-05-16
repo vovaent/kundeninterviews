@@ -19,16 +19,16 @@ if (get_field('tag_on') == 'on') {
 ?>
 
 <section class="MultiArticles" id="<?php echo $unique_id ?>">
-    <div class="container">
-        <?php if ($title = get_field('title')) { ?>
-            <div class="MultiArticlesTitle">
-                <?php echo $title ?>
-            </div>
-        <?php } ?>
-        <div class="MultiArticlesContant">
-
+    <!-- <div class="container"> -->
+    <?php if ($title = get_field('title')) { ?>
+        <div class="MultiArticlesTitle">
+            <?php echo $title ?>
         </div>
+    <?php } ?>
+    <div class="MultiArticlesContant">
+
     </div>
+    <!-- </div> -->
 </section>
 <?php if ($number_row = get_field('number_row')) { ?>
     <style>
