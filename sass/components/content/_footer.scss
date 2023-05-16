@@ -39,7 +39,7 @@
 
             @media(max-width: $tablemin) {
                 width: 100%;
-                padding: 0 16px;
+                padding: 0 1rem;
                 border: none;
                 border-bottom: 1px solid #FFFFFF;
             }
@@ -51,7 +51,7 @@
 
                 @media(max-width: $tablemin) {
                     width: 100%;
-                    padding: 0 16px;
+                    padding: 0 1rem;
                     border: none;
                     border-bottom: 1px solid #FFFFFF;
                 }
@@ -159,6 +159,10 @@
                 margin-top: 24px;
                 align-items: baseline;
 
+                @media (max-width: $tablemin) {
+                    padding-bottom: 16px;
+                }
+
                 &Title {
                     color: #FFFFFF;
                     cursor: pointer;
@@ -220,7 +224,7 @@
                     }
 
                     @media(max-width: $mob) {
-                        margin-left: 32px;
+                        margin-left: 45px;
                     }
 
                     &:first-child {

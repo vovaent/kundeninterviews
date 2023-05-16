@@ -29,9 +29,6 @@ get_header();
             </div>
 
         </section><!-- .error-404 -->
-
-
-
     </div>
 </main><!-- #main -->
 
