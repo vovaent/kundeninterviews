@@ -376,9 +376,9 @@ if (!function_exists('reading_time')) {
         $readingtime = ceil($total_word_count / 200);
 
         if ($readingtime <= 1) {
-            $timer = esc_html__(' min', 'kundeninterviews');
+            $timer = esc_html__(' Min', 'kundeninterviews');
         } else {
-            $timer = esc_html__(' min', 'kundeninterviews');
+            $timer = esc_html__(' Min', 'kundeninterviews');
         }
         if ($readingtime == 0) {
             $totalreadingtime = '<span>1 </span>' . '<span>' . $timer . '</span>';
