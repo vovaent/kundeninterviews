@@ -6,12 +6,16 @@ if (get_field('uniq_id')) {
     $unique_id = uniqid('MultiArticles_');
 }
 
-if (get_field('tag_on') == 'on') {
-    $tag = get_field('tag');
-} else {
-    $tag = array();
+$posts_str = '';
+if (get_field('posts_on') == 'on') {
+    $posts = get_field('posts');
+    $posts_str = implode(',', $posts);
 }
 
+$tag = '';
+if (get_field('tag_on') == 'on') {
+    $tag = get_field('tag');
+}
 ?>
 
 <section class="MultiArticles" id="<?php echo $unique_id ?>">
@@ -71,6 +75,7 @@ if (get_field('tag_on') == 'on') {
             url: '/wp-admin/admin-ajax.php',
             data: {
                 action: 'kundeninterviews_card_load',
+                posts: '<?php echo $posts_str; ?>',
                 tag: '<?php echo $tag; ?>',
                 card_type: '<?php echo get_field('card_type') ?>',
                 q_posts: <?php echo get_field('count') ?>,
