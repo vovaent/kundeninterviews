@@ -1,237 +1,257 @@
 /* CSS Document */
 
-.Footer{
-	background-color: #000000;
+.Footer {
+    background-color: #000000;
     padding: 40px 0px;
-	
-	&Logo{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 60px;
-		margin-bottom: 40px;
-		
-		img{
-			height: 100%;
-			object-fit: contain;
-		}
-		
-	}
-	
-	&Categories{
-		border-top: 1px solid #FFFFFF;
-		border-bottom: 1px solid #FFFFFF;
-		
-		.container{
-			display: flex;
-		}
-		
-		&Item{
-			padding: 32px 80px;
-    		width: calc((100% + 160px) / 4);
-			border-left: 1px solid #FFFFFF;
-			border-right: 1px solid #FFFFFF;
-			
-			@media(max-width: $tablemin){
-				    width: 100%;
-					padding: unset;
-					border: none;
-					border-bottom: 1px solid #FFFFFF;
-			}
-			
-			&:nth-child(1){
-				padding-left: 0px;
-				border-left: none;
-				width: calc((100% + 160px) / 4 - 80px);
-				
-				@media(max-width: $tablemin){
-				    width: 100%;
-					padding: unset;
-					border: none;
-					border-bottom: 1px solid #FFFFFF;
-				}
-			}
-			
-			&:nth-child(4){
-				padding-right: 0px;
-				border-right: none;
-				width: calc((100% + 160px) / 4 - 80px);
-				
-				@media(max-width: $tablemin){
-				    width: 100%;
-					padding: unset;
-					border: none;
-					border-bottom: none;
-					}
-				
-			}
-			
-			&:last-child{
-				@media(max-width: $tablemin){
-				border-bottom: none;
-				}
-			}
-			
-			&Top{
-				@media(max-width: $tablemin){
-				padding: 16px 0;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				}
-				
-				&Icon{
-					display: none;
-					@media(max-width: $tablemin){
-					height: 18px;
-					width: 18px;
-					display: flex;
-					align-items: center;
-				    justify-content: center;
-					}
-					
-					&Close{
-							display: block;
-						}
-						
-					&Open{
-							display: none;
-						}
-					
-					&.open{
-						.FooterCategoriesItemTopIconClose{
-							display: none;
-						}
-						
-						.FooterCategoriesItemTopIconOpen{
-							display: block;
-						}
-					}
-					
-				}
-				
-			}
-			
-			&Title{
-				margin-bottom: 24px;
-				color: #fff;
-				font-size: 16px;
-				
-				@media(max-width: $tablemin){
-				margin-bottom: 0;
-				}
-				
-			}
-			
-			&Post{
-				cursor: pointer;
-				
-				&Title{
-					margin-bottom: 8px;
-					font-size: 12px;
-					line-height: 160%;
-					color: #FFFFFF;
-					
-					&:hover{
-						color: #CCF3EA;
-					}
-					
-				}
-				
-				&Description{
-					margin-bottom: 8px;
-					font-size: 12px;
-					line-height: 160%;
-					color: #FFFFFF;
-					
-				}
-				
-			}
-			
-			&Button{
-				display: flex;
-				margin-top: 24px;
-				align-items: baseline;
-				
-				&Title{
-					color: #FFFFFF;
-					cursor: pointer;
-					font-weight: 700;
-					font-size: 12px;
-					line-height: 160%;
-				}
-				
-				&Icon{
-					width: 16px;
-					margin-left: 8px;
-				}
-				
-			}
-			
-		}
-		
-	}
-	
-	&Info{
-		padding-top: 40px;
-		display: flex;
-    	justify-content: space-between;
-		    align-items: baseline;
-		
-		@media(max-width: $tablemin){
-			flex-direction: column-reverse;
-			align-items: center;
-			padding-top: 32px;
-		}
-		
-		&Copi{
-			font-size: 12px;
-			line-height: 160%;
-			color: #fff;	
-		}
-		
-		&Daten{
-			
-			@media(max-width: $tablemin){
-				margin-bottom: 20px;
-			}
-			
-			ul.menu{
-				padding: unset;
-				margin: unset;
-				display: flex;
-				list-style: none;
-				
-				@media(max-width: $tablemin){
-					justify-content: space-evenly;
-				}
-				
-				li{
-					margin: 0 35px;
-					
-					@media(max-width: $tablemin){
-						margin: auto;
-					}
-					
-					a{
-					    font-size: 12px;
-						line-height: 160%;
-						color: #FFFFFF;
-						text-decoration: none;	
-						
-						&:visited{
-							color: #FFFFFF;
-						}
-						
-					}
-					
-				}
-				
-			}
-			
-		}
-    	
-	}
-	
-	
+
+    &Logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        margin-bottom: 40px;
+
+        img {
+            height: 100%;
+            object-fit: contain;
+        }
+
+    }
+
+    &Categories {
+        border-top: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+
+        .container {
+            display: flex;
+
+            @media (max-width: $tablemin) {
+                flex-direction: column;
+                padding: 0;
+            }
+        }
+
+        &Item {
+            padding: 32px 80px;
+            width: calc((100% + 160px) / 4);
+            border-left: 1px solid #FFFFFF;
+            border-right: 1px solid #FFFFFF;
+
+            @media(max-width: $tablemin) {
+                width: 100%;
+                padding: 0 1rem;
+                border: none;
+                border-bottom: 1px solid #FFFFFF;
+            }
+
+            &:nth-child(1) {
+                padding-left: 0px;
+                border-left: none;
+                width: calc((100% + 160px) / 4 - 80px);
+
+                @media(max-width: $tablemin) {
+                    width: 100%;
+                    padding: 0 1rem;
+                    border: none;
+                    border-bottom: 1px solid #FFFFFF;
+                }
+            }
+
+            &:nth-child(4) {
+                padding-right: 0px;
+                border-right: none;
+                width: calc((100% + 160px) / 4 - 80px);
+
+                @media(max-width: $tablemin) {
+                    width: 100%;
+                    padding: 0 16px;
+                    border: none;
+                    border-bottom: none;
+                }
+
+            }
+
+            &:last-child {
+                @media(max-width: $tablemin) {
+                    border-bottom: none;
+                }
+            }
+
+            &Top {
+                @media(max-width: $tablemin) {
+                    padding: 16px 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                &Icon {
+                    display: none;
+
+                    @media(max-width: $tablemin) {
+                        height: 18px;
+                        width: 18px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    &Close {
+                        display: block;
+                    }
+
+                    &Open {
+                        display: none;
+                    }
+
+                    &.open {
+                        .FooterCategoriesItemTopIconClose {
+                            display: none;
+                        }
+
+                        .FooterCategoriesItemTopIconOpen {
+                            display: block;
+                        }
+                    }
+
+                }
+
+            }
+
+            &Title {
+                margin-bottom: 24px;
+                color: #fff;
+                font-size: 16px;
+
+                @media(max-width: $tablemin) {
+                    margin-bottom: 0;
+                }
+
+            }
+
+            &Post {
+                cursor: pointer;
+
+                &Title {
+                    margin-bottom: 8px;
+                    font-size: 12px;
+                    line-height: 160%;
+                    color: #FFFFFF;
+
+                    &:hover {
+                        color: #CCF3EA;
+                    }
+
+                }
+
+                &Description {
+                    margin-bottom: 8px;
+                    font-size: 12px;
+                    line-height: 160%;
+                    color: #FFFFFF;
+
+                }
+
+            }
+
+            &Button {
+                display: flex;
+                margin-top: 24px;
+                align-items: baseline;
+
+                @media (max-width: $tablemin) {
+                    padding-bottom: 16px;
+                }
+
+                &Title {
+                    color: #FFFFFF;
+                    cursor: pointer;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 160%;
+                }
+
+                &Icon {
+                    width: 16px;
+                    margin-left: 8px;
+                }
+
+            }
+
+        }
+
+    }
+
+    &Info {
+        padding-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+
+        @media(max-width: $tablemin) {
+            flex-direction: column-reverse;
+            align-items: center;
+            padding-top: 32px;
+        }
+
+        &Copi {
+            font-size: 12px;
+            line-height: 160%;
+            color: #fff;
+        }
+
+        &Daten {
+
+            @media(max-width: $tablemin) {
+                margin-bottom: 20px;
+            }
+
+            ul.menu {
+                padding: unset;
+                margin: unset;
+                display: flex;
+                list-style: none;
+
+                @media(max-width: $tablemin) {
+                    justify-content: space-evenly;
+                }
+
+                li {
+                    margin: 0 35px;
+
+                    @media(max-width: $tablemin) {
+                        margin: auto;
+                    }
+
+                    @media(max-width: $mob) {
+                        margin-left: 45px;
+                    }
+
+                    &:first-child {
+                        @media(max-width: $mob) {
+                            margin-left: 0;
+                        }
+                    }
+
+                    a {
+                        font-size: 12px;
+                        line-height: 160%;
+                        color: #FFFFFF;
+                        text-decoration: none;
+
+                        &:visited {
+                            color: #FFFFFF;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+
 }

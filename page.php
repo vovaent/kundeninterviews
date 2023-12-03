@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying all pages
  *
@@ -15,17 +16,20 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-		<?php
-		while ( have_posts() ) :
-			the_post();
+<main id="primary" class="site-main">
+    <div class="container">
 
-			the_content();
+        <?php
+        while (have_posts()) :
+            the_post();
 
-		endwhile; // End of the loop.
-		?>
+            the_content();
 
-	</main><!-- #main -->
+        endwhile; // End of the loop.
+        ?>
+
+    </div><!-- #container -->
+</main><!-- #main -->
 
 <?php
 get_footer();

@@ -1,237 +1,256 @@
 /* CSS Document */
 
-.Header{
-	&Top{
-		height: 100px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		
-		&Search{
-			display: flex;
-			height: 48px;
-			align-items: center;
-			
-			form{
-				display: flex;
-    			align-items: center;
-			}
-			
-			@media(max-width: $tablemin){
-				display: none;
-			}
-			
-			&Input{
-				display: flex;
-				padding: 13px 16px;
-				align-items: center;
-				border: 1px solid #000;
-				border-right: 0px;
-				
-				&Icon{
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
-				
-				input{
-					border: none;
-					outline: unset;
-					padding: unset;
-					font-size: 13px;
-					margin-left: 10px;
-				}
-				
-			}
-			
-			&Button{
-				height: 48px;
-				width: 48px;
-				background-color: #19C79D;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				border: 1px solid #000;
-				cursor: pointer;
-			}
-			
-		}
-		
-		&Logo{
-			height: 60px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			position: relative;
-			visibility: hidden;
-			
-			@media(max-width: $tablemin){
-				visibility: visible;
-			}
-		}
-		
-		&Burger{
-			display: none;
-			height: 56px;
-			width: 56px;
-			border: 1px solid #000000;
-			
-			@media(max-width: $tablemin){
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-			
-			&Close{
-				display: block;
-				}
-					&Open{
-							display: none;
-						}
-					&.open{
-						.HeaderTopBurgerClose{
-							display: none;
-						}
-						.HeaderTopBurgerOpen{
-							display: block;
-						}
-					}
-			&Menu{
-			    position: absolute;
-				height: 100%;
-				width: 100%;
-				z-index: 9;
-				background-color: #fff;	
-				transform: translateX(-100%);
-    			transition: .3s;
-				
-				&.open{
-					transform: translateX(0);
-				}
-				
-				
-			&Search{
-			display: flex;
-			height: 48px;
-			align-items: center;
-			margin-top: 56px;
-				
-				form{
-				display: flex;
-    			align-items: center;
-				    width: 100%;	
-			}
-			
-			&Input{
-				display: flex;
-				padding: 13px 16px;
-				align-items: center;
-				border: 1px solid #000;
-				border-right: 0px;
-				width: 100%;
-				
-				&Icon{
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
-				
-				input{
-					border: none;
-					outline: unset;
-					padding: unset;
-					font-size: 13px;
-					margin-left: 10px;
-					width: 100%;
-				}
-				
-			}
-			
-			&Button{
-				height: 48px;
-				width: 48px;
-				background-color: #19C79D;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				border: 1px solid #000;
-				cursor: pointer;
-				min-width: 48px;
-			}
-			
-		}
-				
-				&Nav{
-		height: auto;
-    	margin-top: 40px;
-		justify-content: center;
-		align-items: center;
-		display: flex;
-		flex-direction: column;
-					
-			
-			ul{
-				width: 100%;
-				align-items: center;
-				list-style: none;
-				margin: unset;
-				padding: unset;
-				
-				li{
-					margin: 8px auto;
-					display: flex;
-					justify-content: center;
-					a{
-						color: #000;
-						font-weight: 500;
-						font-size: 24px;
-						text-decoration: unset;
-						
-						&:visited{
-							color: #000;
-						}
-					}
-				}
-			}
-		
-	}
-				
-				
-			}
-			
-			
-		}
-		
-	}
-	
-	&Menu{
-		height: 56px;
-		background-color: #19C79D;
-		justify-content: center;
-		align-items: center;
-		display: flex;
-		border-top: 1px solid #000;
-		border-bottom: 1px solid #000;
-		
-		@media(max-width: $tablemin){
-			display: none;
-		}
-			
-			ul{
-				width: 100%;
-				justify-content: center;
-				flex-wrap: wrap;
-				
-				li{
-					margin: 5px 28px;
-					a{
-						color: #fff;
-						&:visited{
-							color: #fff;
-						}
-					}
-				}
-			}
-		
-	}
+.Header {
+    &Top {
+        height: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &Search {
+            display: flex;
+            height: 48px;
+            align-items: center;
+
+            form {
+                display: flex;
+                align-items: center;
+            }
+
+            @media(max-width: $tablemin) {
+                display: none;
+            }
+
+            &Input {
+                display: flex;
+                padding: 13px 16px;
+                align-items: center;
+                border: 1px solid #000;
+                border-right: 0px;
+
+                &Icon {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                input {
+                    border: none;
+                    outline: unset;
+                    padding: unset;
+                    font-size: 13px;
+                    margin-left: 10px;
+                }
+
+            }
+
+            &Button {
+                height: 48px;
+                width: 48px;
+                background-color: #19C79D;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid #000;
+                cursor: pointer;
+            }
+
+        }
+
+        &Logo {
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            visibility: hidden;
+
+            @media(max-width: $tablemin) {
+                visibility: visible;
+            }
+
+            @media(max-width: $mob) {
+                display: none;
+            }
+
+            &Mob {
+                display: none;
+
+                @media(max-width: $mob) {
+                    display: block;
+                }
+            }
+        }
+
+        &Burger {
+            display: none;
+            height: 56px;
+            width: 56px;
+            border: 1px solid #000000;
+
+            @media(max-width: $tablemin) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &Close {
+                display: block;
+            }
+
+            &Open {
+                display: none;
+            }
+
+            &.open {
+                .HeaderTopBurgerClose {
+                    display: none;
+                }
+
+                .HeaderTopBurgerOpen {
+                    display: block;
+                }
+            }
+
+            &Menu {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                z-index: 9;
+                background-color: #fff;
+                transform: translateX(-100%);
+                transition: .3s;
+
+                &.open {
+                    transform: translateX(0);
+                }
+
+
+                &Search {
+                    display: flex;
+                    height: 48px;
+                    align-items: center;
+                    margin-top: 56px;
+
+                    form {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                    }
+
+                    &Input {
+                        display: flex;
+                        padding: 13px 16px;
+                        align-items: center;
+                        border: 1px solid #000;
+                        border-right: 0px;
+                        width: 100%;
+
+                        &Icon {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+
+                        input {
+                            border: none;
+                            outline: unset;
+                            padding: unset;
+                            font-size: 13px;
+                            margin-left: 10px;
+                            width: 100%;
+                        }
+
+                    }
+
+                    &Button {
+                        height: 48px;
+                        width: 48px;
+                        background-color: #19C79D;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid #000;
+                        cursor: pointer;
+                        min-width: 48px;
+                    }
+
+                }
+
+                &Nav {
+                    height: auto;
+                    margin-top: 40px;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+
+
+                    ul {
+                        width: 100%;
+                        align-items: center;
+                        list-style: none;
+                        margin: unset;
+                        padding: unset;
+
+                        li {
+                            margin: 8px auto;
+                            display: flex;
+                            justify-content: center;
+
+                            a {
+                                color: #000;
+                                font-weight: 500;
+                                font-size: 24px;
+                                text-decoration: unset;
+
+                                &:visited {
+                                    color: #000;
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+
+
+        }
+
+    }
+
+    &Menu {
+        height: 56px;
+        background-color: #19C79D;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+
+        @media(max-width: $tablemin) {
+            display: none;
+        }
+
+        ul {
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            li {
+                margin: 5px 28px;
+
+                a {
+                    color: #fff;
+
+                    &:visited {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+    }
 }
